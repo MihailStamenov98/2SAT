@@ -40,7 +40,7 @@ typedef long long ll;
   }
 
   void Reset(int vars) {
-    this->vars = vars;
+    //this->vars = vars;
 
     fo.clear(), fo.resize(2 * vars);
     rfo.clear(), rfo.resize(2 * vars);
@@ -94,20 +94,28 @@ int main()
   Reset(2);
 
   // (X0 | X1) & (!X0 | X1)
-  AddConstraint(sat.Var(0), sat.Var(1));
-  AddConstraint(sat.Not(sat.Var(0)), sat.Var(1));
+ /* AddConstraint(Var(0), Var(1));
+  AddConstraint(Not(Var(0)), Var(1));*/
 
+  AddConstraint(Var(0), Var(1));
+  AddConstraint(Not(Var(0)), Var(1));
+  /*AddConstraint(Not(Var(0)), Not(Var(1)));
+  AddConstraint(Not(Var(1)), Var(0));*/
   vector<char> res;
-  if (sat.Solve(res)) {
+  vars = 2;
+  cout<<"=========="<<Solve(res)<<endl;
+  if (Solve(res)) {
     for (int i = 0; i < sz(res); ++i)
-      cout << "X" << i << " = " << ((int)res[i]) << '\n';
+    {
+        cout << "X" << i << " = " << ((int)res[i]) << '\n';
+    }
   } else {
     cout << "No solution\n";
   }
 
 
 
-    int t;
+  /*  int t;
     cin>>t;
 
     for (int test = 0; test < t; test++)
@@ -143,7 +151,7 @@ int main()
             }
         }
         // Run 2-SAT
-        kosaraju();
+        //kosaraju();
 
         // Check impossibility
         bool impossible = false;
@@ -159,6 +167,6 @@ int main()
     }
 
     return 0;
-}
+}*/
   return 0;
 }
